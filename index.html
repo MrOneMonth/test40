@@ -39,6 +39,13 @@
         }
         });
       }
+      
+      vkBridge.send("VKWebAppGetUserInfo")
+      .then((data)=>{
+        if(data.id){
+          ss.SendMessage('VkBridge', 'ShowAdsResult', 'good');
+        }
+      });
 
       function storageSet(key, value) {
         const bridge = vkBridge.default;
