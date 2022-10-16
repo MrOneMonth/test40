@@ -28,7 +28,7 @@
       function showAd(adFormat, waterfall){
         const bridge = vkBridge.default;
         vkBridge.send("VKWebAppShowNativeAds", {ad_format:adFormat, use_waterfall:waterfall});
-        bridge.subscribe((e) => {
+        vkBridge.subscribe((e) => {
         if(e.detail.type == 'VKWebAppShowNativeAdsResult' && e.detail.data.result == true) {
             ss.SendMessage('VkBridge', 'ShowAdsResult', 'good');
         }
@@ -46,7 +46,7 @@
       function storageGet(key){
         const bridge = vkBridge.default;
         vkBridge.send("VKWebAppStorageGet", {"keys": [key]});
-        bridge.subscribe((e) => {
+        vkBridge.subscribe((e) => {
           if(e.detail.type == 'VKWebAppStorageGetResult') {
             ss.SendMessage('VkBridge', 'StorageGetResult', e.detail.data.keys[0].value);
           }
